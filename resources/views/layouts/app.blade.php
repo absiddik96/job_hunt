@@ -1,80 +1,177 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Job Hunt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="CreativeLayers">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/bootstrap-grid.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('frontend/css/icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/animate.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/responsive.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/chosen.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/colors/colors.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('font-awesome/4.5.0/css/font-awesome.min.css') }}"/>
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+<div class="page-loading">
+    <img src="{{ asset('frontend/images/loader.gif') }}" alt=""/>
+</div>
 
-                    </ul>
+<div class="theme-layout" id="scrollup">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <div class="responsive-header">
+        <div class="responsive-menubar">
+            <div class="res-logo"><a href="" title=""><img src="{{ asset('frontend/images/resource/logo.png') }}" alt=""/></a></div>
+            <div class="menu-resaction">
+                <div class="res-openmenu">
+                    <img src="{{ asset('frontend/images/icon.png') }}" alt=""/> Menu
+                </div>
+                <div class="res-closemenu">
+                    <img src="{{ asset('frontend/images/icon2.png') }}" alt=""/> Close
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>
+        <div class="responsive-opensec">
+            <div class="btn-extars">
+                <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                <ul class="account-btns">
+                    <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
+                    <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
+                </ul>
+            </div><!-- Btn Extras -->
+            <form class="res-search">
+                <input type="text" placeholder="Job title, keywords or company name"/>
+                <button type="submit"><i class="la la-search"></i></button>
+            </form>
+            <div class="responsivemenu">
+                @include('include.header._menu')
+            </div>
+        </div>
     </div>
+
+    <header class="white">
+        <div class="menu-sec">
+            <div class="container">
+                <div class="logo">
+                    <a href="" title=""><img class="hidesticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/><img class="showsticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/></a>
+                </div><!-- Logo -->
+                <div class="btn-extars">
+                    <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                    <ul class="account-btns">
+                        <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
+                        <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
+                    </ul>
+                </div><!-- Btn Extras -->
+                <nav>
+                    @include('include.header._menu')
+                </nav><!-- Menus -->
+            </div>
+        </div>
+    </header>
+
+    @yield('content')
+
+    <footer>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 column">
+                        <div class="widget">
+                            <div class="about_widget">
+                                <div class="logo">
+                                    <a href="" title=""><img src="{{ asset('frontend/images/resource/logo.png') }}" alt=""/></a>
+                                </div>
+                                <span>Collin Street West, Victor 8007, Australia.</span>
+                                <span>+1 246-345-0695</span>
+                                <span><a href="https://grandetest.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41282f272e012b2e2329342f356f222e2c">[email&#160;protected]</a></span>
+                                <div class="social">
+                                    <a href="#" title=""><i class="fa fa-facebook"></i></a>
+                                    <a href="#" title=""><i class="fa fa-twitter"></i></a>
+                                    <a href="#" title=""><i class="fa fa-linkedin"></i></a>
+                                    <a href="#" title=""><i class="fa fa-pinterest"></i></a>
+                                    <a href="#" title=""><i class="fa fa-behance"></i></a>
+                                </div>
+                            </div><!-- About Widget -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 column">
+                        <div class="widget">
+                            <h3 class="footer-title">Frequently Asked Questions</h3>
+                            <div class="link_widgets">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <a href="#" title="">Privacy & Seurty </a>
+                                        <a href="#" title="">Terms of Serice</a>
+                                        <a href="#" title="">Communications </a>
+                                        <a href="#" title="">Referral Terms </a>
+                                        <a href="#" title="">Lending Licnses </a>
+                                        <a href="#" title="">Disclaimers </a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a href="#" title="">Support </a>
+                                        <a href="#" title="">How It Works </a>
+                                        <a href="#" title="">For Employers </a>
+                                        <a href="#" title="">Underwriting </a>
+                                        <a href="#" title="">Contact Us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 column">
+                        <div class="widget">
+                            <h3 class="footer-title">Find Jobs</h3>
+                            <div class="link_widgets">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a href="#" title="">US Jobs</a>
+                                        <a href="#" title="">Canada Jobs</a>
+                                        <a href="#" title="">UK Jobs</a>
+                                        <a href="#" title="">Emplois en Fnce</a>
+                                        <a href="#" title="">Jobs in Deuts</a>
+                                        <a href="#" title="">Vacatures China</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 column">
+                        <div class="widget">
+                            <div class="download_widget">
+                                <a href="#" title=""><img src="{{ asset('frontend/images/resource/dw1.png') }}" alt=""/></a>
+                                <a href="#" title=""><img src="{{ asset('frontend/images/resource/dw2.png') }}" alt=""/></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-line">
+            <span>© 2018 Jobhunt All rights reserved. Design by Creative Layers</span>
+            <a href="#scrollup" class="scrollup" title=""><i class="la la-arrow-up"></i></a>
+        </div>
+    </footer>
+
+</div>
+<script src="{{ asset('frontend/js/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/modernizr.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/script.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/wow.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/slick.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/parallax.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/select-chosen.js') }}" type="text/javascript"></script>
+
 </body>
 </html>
+

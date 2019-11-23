@@ -1,77 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+    <section>
+        <div class="block no-padding  gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="inner2">
+                            <div class="inner-title2">
+                                <h3>Register</h3>
+                                <span>Keep up to date with the latest news</span>
+                            </div>
+                            <div class="page-breacrumbs">
+                                <ul class="breadcrumbs">
+                                    <li><a href="#" title="">Home</a></li>
+                                    <li><a href="#" title="">Pages</a></li>
+                                    <li><a href="#" title="">Candidate Register</a></li>
+                                </ul>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
+    <section>
+        <div class="block remove-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="account-popup-area signup-popup-box static">
+                            <div class="account-popup">
+                                <h3>Sign Up</h3>
+                                <div class="select-user">
+                                    <span class="active">Candidate</span>
+                                    <a href="{{ route('sign-up.advertiser') }}"><span>Advertiser</span></a>
+                                </div>
+                                <form action="{{ route('register.candidate') }}" method="post">
+                                    @csrf
+                                    <div class="form-group text-left ">
+                                        <div class="cfield mb-0">
+                                            <input name="first_name" type="text" placeholder="First Name" value="{{ old('first_name') }}" />
+                                        </div>
+                                        @error('first_name')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group text-left ">
+                                        <div class="cfield mb-0">
+                                            <input name="last_name" type="text" placeholder="Last Name" value="{{ old('last_name') }}" />
+                                        </div>
+                                        @error('last_name')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group text-left ">
+                                        <div class="cfield mb-0">
+                                            <input name="email" type="email" placeholder="Email" value="{{ old('email') }}" />
+                                        </div>
+                                        @error('email')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group text-left ">
+                                        <div class="cfield mb-0">
+                                            <input name="password" type="password" placeholder="Password" />
+                                        </div>
+                                        @error('password')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="cfield mb-0">
+                                            <input name="password_confirmation" type="password" placeholder="Confirm Password" />
+                                        </div>
+                                    </div>
+                                    <button type="submit">Signup</button>
+                                </form>
+                            </div>
+                        </div><!-- SIGNUP POPUP -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
