@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\AdvertiserInfo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,13 +11,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const USER_ROLES = [1 => 'admin', 2 => 'advertiser', 3 => 'candidate'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'uid', 'first_name', 'last_name', 'email', 'password', 'role',
     ];
 
     /**
@@ -36,4 +39,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['user_role'];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uid = rand(100,999).time().rand(10,99);
+        });
+    }
+
+    public function getUserRoleAttribute()
+    {
+        return self::USER_ROLES[$this->role];
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
+
+    public function advertiserInfo()
+    {
+        return $this->hasOne(AdvertiserInfo::class,'advertiser_id','id');
+    }
 }
