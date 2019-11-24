@@ -24,3 +24,19 @@ Route::get('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@showRegistr
 Route::post('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@register')->name('register.advertiser');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth', 'namespace' => 'Candidate', 'as' => 'candidate.'], function () {
+    /*Profile*/
+    Route::get('profile','ProfilesController@profile')->name('profile');
+    Route::post('upload-avatar','ProfilesController@uploadAvatar')->name('profile.upload-avatar');
+    Route::put('update-profile','ProfilesController@update')->name('profile.update');
+
+    /*Resume*/
+    Route::get('resume','ResumeController@resume')->name('resume');
+    Route::post('upload-resume','ResumeController@uploadResume')->name('resume.upload');
+
+    /*Skills*/
+    Route::resource('skills','SkillsController')->except(['create','show']);
+});
+
+

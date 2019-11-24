@@ -42,17 +42,21 @@
             </div>
         </div>
         <div class="responsive-opensec">
-            <div class="btn-extars">
-                <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
-                <ul class="account-btns">
-                    <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
-                    <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
-                </ul>
-            </div><!-- Btn Extras -->
-            <form class="res-search">
-                <input type="text" placeholder="Job title, keywords or company name"/>
-                <button type="submit"><i class="la la-search"></i></button>
-            </form>
+            @if (auth()->check())
+                @if (auth()->user()->user_role == 'advertiser')
+                    @include('include.header._advertiser')
+                @elseif (auth()->user()->user_role == 'candidate')
+                    @include('include.header._candidate')
+                @endif
+            @else
+                <div class="btn-extars">
+                    <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                    <ul class="account-btns">
+                        <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
+                        <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
+                    </ul>
+                </div><!-- Btn Extras -->
+            @endif
             <div class="responsivemenu">
                 @include('include.header._menu')
             </div>
@@ -65,13 +69,21 @@
                 <div class="logo">
                     <a href="" title=""><img class="hidesticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/><img class="showsticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/></a>
                 </div><!-- Logo -->
-                <div class="btn-extars">
-                    <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
-                    <ul class="account-btns">
-                        <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
-                        <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
-                    </ul>
-                </div><!-- Btn Extras -->
+                @if (auth()->check())
+                    @if (auth()->user()->user_role == 'advertiser')
+                        @include('include.header._advertiser')
+                    @elseif (auth()->user()->user_role == 'candidate')
+                        @include('include.header._candidate')
+                    @endif
+                @else
+                    <div class="btn-extars">
+                        <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                        <ul class="account-btns">
+                            <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
+                            <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
+                        </ul>
+                    </div><!-- Btn Extras -->
+                @endif
                 <nav>
                     @include('include.header._menu')
                 </nav><!-- Menus -->
@@ -171,7 +183,44 @@
 <script src="{{ asset('frontend/js/slick.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/parallax.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/select-chosen.js') }}" type="text/javascript"></script>
-
+<!-- Include Date Range Picker -->
+<script src="{{ asset('frontend/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<script>
+    $(function(){
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
+<script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}"></script>
+@if(Session::get('success'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        Toast.fire({
+            type: 'success',
+            title: "{{ Session::get('success') }}"
+        })
+    </script>
+@endif
+@if(Session::get('info'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        Toast.fire({
+            type: 'info',
+            title: "{{ Session::get('info') }}"
+        })
+    </script>
+@endif
 </body>
 </html>
 

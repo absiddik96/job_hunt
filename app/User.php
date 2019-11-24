@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Models\AdvertiserInfo;
+use App\Models\CandidateInfo;
+use App\Models\CandidateSkill;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,5 +65,15 @@ class User extends Authenticatable
     public function advertiserInfo()
     {
         return $this->hasOne(AdvertiserInfo::class,'advertiser_id','id');
+    }
+
+    public function candidateInfo()
+    {
+        return $this->hasOne(CandidateInfo::class,'candidate_id','id');
+    }
+
+    public function candidateSkills()
+    {
+        return $this->hasMany(CandidateSkill::class,'candidate_id','id');
     }
 }
