@@ -38,10 +38,6 @@
                                             <div class="progress-sec with-edit">
                                                 <span>{{ $skill->skill }}</span>
                                                 <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                </ul>
                                             </div>
                                         @endforeach
                                     @endif
