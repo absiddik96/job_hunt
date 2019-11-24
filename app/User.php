@@ -5,6 +5,7 @@ namespace App;
 use App\Models\AdvertiserInfo;
 use App\Models\CandidateInfo;
 use App\Models\CandidateSkill;
+use App\Models\JobPost;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -75,5 +76,10 @@ class User extends Authenticatable
     public function candidateSkills()
     {
         return $this->hasMany(CandidateSkill::class,'candidate_id','id');
+    }
+
+    public function jobPosts()
+    {
+        return $this->hasMany(JobPost::class,'advertiser_id','id');
     }
 }

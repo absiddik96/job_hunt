@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/job-details/{jobPost}', 'HomeController@jobPostDetails')->name('home.job-post-details');
 });
+
 
 Auth::routes(['register' => false]);
 
@@ -23,8 +25,17 @@ Route::post('/sign-up/candidate', 'Auth\RegisterController@register')->name('reg
 Route::get('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@showRegistrationForm')->name('sign-up.advertiser');
 Route::post('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@register')->name('register.advertiser');
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
+/*Advertiser*/
+Route::group(['middleware' => 'auth', 'namespace' => 'Advertiser', 'as' => 'advertiser.'], function () {
+    /*Job Post*/
+    Route::get('dashboard', 'JobPostsController@index')->name('dashboard');
+    Route::resource('job-posts','JobPostsController')->except(['index']);
+});
+
+
+/*Candidate*/
 Route::group(['middleware' => 'auth', 'namespace' => 'Candidate', 'as' => 'candidate.'], function () {
     /*Profile*/
     Route::get('profile','ProfilesController@profile')->name('profile');

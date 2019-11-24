@@ -63,71 +63,28 @@
                             <span>Leading Employers already using job and talent.</span>
                         </div><!-- Heading -->
                         <div class="job-listings-sec">
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l1.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">Web Designer / Developer</a></h3>
-                                    <span>Massimo Artemisis</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is ft">FULL TIME</span>
-                            </div><!-- Job -->
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l2.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">Marketing Director</a></h3>
-                                    <span>Tix Dog</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>Rennes, France</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is pt">PART TIME</span>
-                            </div><!-- Job -->
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l3.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">C Developer (Senior) C .Net</a></h3>
-                                    <span>StarHealth</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>London, United Kingdom</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is ft">FULL TIME</span>
-                            </div><!-- Job -->
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l4.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">Application Developer For Android</a></h3>
-                                    <span>Altes Bank</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>Istanbul, Turkey</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is fl">FREELANCE</span>
-                            </div><!-- Job -->
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l5.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">Regional Sales Manager South east Asia</a></h3>
-                                    <span>Vincent</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>Ajax, Ontario</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is tp">TEMPORARY</span>
-                            </div><!-- Job -->
-                            <div class="job-listing">
-                                <div class="job-title-sec">
-                                    <div class="c-logo"><img src="{{ asset('frontend/images/resource/l6.png') }}" alt=""/></div>
-                                    <h3><a href="#" title="">Social Media and Public Relation Executive </a></h3>
-                                    <span>MediaLab</span>
-                                </div>
-                                <span class="job-lctn"><i class="la la-map-marker"></i>Ankara / Turkey</span>
-                                <span class="fav-job"><i class="la la-heart-o"></i></span>
-                                <span class="job-is ft">FULL TIME</span>
-                            </div><!-- Job -->
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="browse-all-cat">
-                            <a href="#" title="">Load more listings</a>
+                            @if($job_posts->count())
+                                @foreach ($job_posts as $post)
+                                    <div class="job-listing">
+                                        <div class="job-title-sec">
+                                            <div class="c-logo"></div>
+                                            <h3 class="pl-3"><a href="{{ route('frontend.home.job-post-details',$post->uid) }}" title="">{{ $post->title }}</a></h3>
+                                            <span class="pl-3">{{ $post->advertiser->advertiserInfo ? $post->advertiser->advertiserInfo->business_name : '' }}</span>
+                                        </div>
+                                        <span class="job-lctn"><i class="la la-map-marker"></i>{{ $post->location }}, {{ $post->country }}</span>
+                                        <span class="job-lctn"><i class="la la-calendar"></i>{{ $post->deadline }}</span>
+                                        @if (auth()->check() && auth()->user()->user_role == 'candidate')
+                                            <a target="_blank" href="{{ route('frontend.home.job-post-details',$post->uid) }}">
+                                                <span class="job-is fl">Apply Now</span>
+                                            </a>
+                                        @elseif(!auth()->check())
+                                            <a href="{{ route('register.candidate') }}">
+                                                <span class="job-is fl">Apply Now</span>
+                                            </a>
+                                        @endif
+                                    </div><!-- Job -->
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

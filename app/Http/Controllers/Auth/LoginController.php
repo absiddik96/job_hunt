@@ -45,10 +45,10 @@ class LoginController extends Controller
             return redirect()->route('candidate.profile');
         }
 
-        if ($user->user_role == 'advertise') {
-            return redirect()->route('home');
+        if ($user->user_role == 'advertiser') {
+            return redirect()->route('advertiser.dashboard');
         }
 
-        return redirect('/dashboard');
+        return redirect('/home');
     }
 }

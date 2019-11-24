@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/colors/colors.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('font-awesome/4.5.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css') }}">
 
 </head>
 <body>
@@ -31,7 +33,7 @@
 
     <div class="responsive-header">
         <div class="responsive-menubar">
-            <div class="res-logo"><a href="" title=""><img src="{{ asset('frontend/images/resource/logo.png') }}" alt=""/></a></div>
+            <div class="res-logo"><a href="{{ route('frontend.home') }}" title=""><img src="{{ asset('frontend/images/resource/logo.png') }}" alt=""/></a></div>
             <div class="menu-resaction">
                 <div class="res-openmenu">
                     <img src="{{ asset('frontend/images/icon.png') }}" alt=""/> Menu
@@ -67,7 +69,7 @@
         <div class="menu-sec">
             <div class="container">
                 <div class="logo">
-                    <a href="" title=""><img class="hidesticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/><img class="showsticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/></a>
+                    <a href="{{ route('frontend.home') }}" title=""><img class="hidesticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/><img class="showsticky" src="{{ asset('frontend/images/resource/logo10.png') }}" alt=""/></a>
                 </div><!-- Logo -->
                 @if (auth()->check())
                     @if (auth()->user()->user_role == 'advertiser')
