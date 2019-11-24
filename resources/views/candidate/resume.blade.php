@@ -13,7 +13,7 @@
                                 <h3>My Resume</h3>
                             </div>
                             <div class="profile-form-edit mt-3">
-                                @if ($resume->resume)
+                                @if ($resume && $resume->resume)
                                     <div class="col-md-12 pb-3 pl-4">
                                         <a target="_blank" href="{{ $resume->resume_path }}">{{ $resume->resume }}</a>
                                         <a download href="{{ $resume->resume_path }}"><i class="fa fa-download"></i></a>

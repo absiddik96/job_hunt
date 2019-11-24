@@ -25,6 +25,10 @@
                                             </div>
                                         </div><!-- Emply List -->
                                     @endforeach
+                                @else
+                                    <div class="emply-resume-list">
+                                        <p>No data found</p>
+                                    </div><!-- Emply List -->
                                 @endif
 
                             </div>
