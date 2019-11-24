@@ -12,7 +12,7 @@ class ApplicantsController extends Controller
     public function applicants(JobPost $jobPost)
     {
         return view('advertiser.applicants')
-            ->with('post', $jobPost->load(['applicants.candidate']));
+            ->with('post', $jobPost->load(['applicants.candidate.candidateInfo']));
     }
 
     public function applicantDetails($candidate_id)

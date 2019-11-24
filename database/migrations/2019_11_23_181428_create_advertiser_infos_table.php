@@ -18,6 +18,8 @@ class CreateAdvertiserInfosTable extends Migration
             $table->bigInteger('advertiser_id')->unsigned();
             $table->string('business_name')->nullable();
             $table->timestamps();
+
+            $table->foreign('advertiser_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

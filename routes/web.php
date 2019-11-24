@@ -11,12 +11,13 @@
 |
 */
 
+/*Frontend*/
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/job-details/{jobPost}', 'HomeController@jobPostDetails')->name('home.job-post-details');
 });
 
-
+/*Auth*/
 Auth::routes(['register' => false]);
 
 /* Sign Up */
@@ -25,10 +26,11 @@ Route::post('/sign-up/candidate', 'Auth\RegisterController@register')->name('reg
 Route::get('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@showRegistrationForm')->name('sign-up.advertiser');
 Route::post('/sign-up/advertiser', 'Auth\AdvertiserRegisterController@register')->name('register.advertiser');
 
+/*Home*/
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*Advertiser*/
-Route::group(['middleware' => 'auth', 'namespace' => 'Advertiser', 'as' => 'advertiser.'], function () {
+Route::group(['middleware' => ['auth','isAdvertiser'], 'namespace' => 'Advertiser', 'as' => 'advertiser.'], function () {
     /*Job Post*/
     Route::get('dashboard', 'JobPostsController@index')->name('dashboard');
     Route::resource('job-posts','JobPostsController')->except(['index']);
@@ -40,7 +42,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Advertiser', 'as' => 'adve
 
 
 /*Candidate*/
-Route::group(['middleware' => 'auth', 'namespace' => 'Candidate', 'as' => 'candidate.'], function () {
+Route::group(['middleware' => ['auth','isCandidate'], 'namespace' => 'Candidate', 'as' => 'candidate.'], function () {
     /*Profile*/
     Route::get('profile','ProfilesController@profile')->name('profile');
     Route::post('upload-avatar','ProfilesController@uploadAvatar')->name('profile.upload-avatar');

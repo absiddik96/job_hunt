@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (auth()->user()->user_role == 'candidate') {
+            return redirect()->route('candidate.profile');
+        }
+
+        if (auth()->user()->user_role == 'advertiser') {
+            return redirect()->route('advertiser.dashboard');
+        }
     }
 }
