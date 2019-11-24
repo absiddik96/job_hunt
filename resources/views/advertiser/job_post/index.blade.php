@@ -30,7 +30,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span class="applied-field">3+ Applied</span>
+                                                    <span class="applied-field">{{ $post->applicants->count() }} Applied</span>
                                                 </td>
                                                 <td>
                                                     <span>{{ $post->created_at->format('Y-m-d') }}</span><br />
@@ -38,7 +38,7 @@
                                                 </td>
                                                 <td>
                                                     <ul class="action_job">
-                                                        <li><span>Applicants</span><a href="" title=""><i class="la la-users"></i></a></li>
+                                                        <li><span>Applicants</span><a href="{{ route('advertiser.applicants',$post->uid) }}" title=""><i class="la la-users"></i></a></li>
                                                         <li><span>View Job</span><a href="{{ route('advertiser.job-posts.show', $post->uid) }}" title=""><i class="la la-eye"></i></a></li>
                                                         <li><span>Edit</span><a href="{{ route('advertiser.job-posts.edit', $post->uid) }}" title=""><i class="la la-pencil"></i></a></li>
                                                         <li><span>Delete</span><a onclick="event.preventDefault(); document.getElementById('delete-post-{{ $post->uid }}').submit();" title=""><i class="la la-trash-o"></i></a></li>

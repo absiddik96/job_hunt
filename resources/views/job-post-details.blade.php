@@ -35,9 +35,16 @@
                     </div>
                     <div class="col-lg-4 column">
                         @if (auth()->check() && auth()->user()->user_role == 'candidate')
-                            <a class="apply-thisjob" href="#" title=""><i class="la la-paper-plane"></i>Apply for job</a>
+                            @if ($post->appliedBy(auth()->user()->id))
+                                <span class="appled-job" href="{{ route('register.candidate') }}" title=""><i class="la la-paper-plane"></i>Already Applied</span>
+                            @else
+                                <a onclick="event.preventDefault(); document.getElementById('apply-job').submit();" class="apply-thisjob" href="#" title=""><i class="la la-paper-plane"></i>Apply for job</a>
+                                <form action="{{ route('candidate.job.apply',$post->uid) }}" method="post" id="apply-job">
+                                    @csrf
+                                </form>
+                            @endif
                         @elseif(!auth()->check())
-                            <a class="apply-thisjob disabled" href="{{ route('register.candidate') }}" title=""><i class="la la-paper-plane"></i>Apply for job</a>
+                            <a class="apply-thisjob" href="{{ route('register.candidate') }}" title=""><i class="la la-paper-plane"></i>Apply for job</a>
                         @endif
 
                         <div class="job-overview">

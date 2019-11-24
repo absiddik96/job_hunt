@@ -17,7 +17,7 @@ class JobPostsController extends Controller
     public function index()
     {
         return view('advertiser.job_post.index')
-            ->with('job_posts', auth()->user()->jobPosts);
+            ->with('job_posts', auth()->user()->jobPosts->load(['applicants']));
     }
 
     /**

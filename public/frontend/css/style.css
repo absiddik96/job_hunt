@@ -5341,6 +5341,31 @@ aside .widget.border:first-child {
     font-family: Open Sans;
     font-weight: bold;
 }
+.appled-job {
+    float: left;
+    width: 100%;
+    border: 2px solid #8b91dd;
+    text-align: center;
+    color: #8b91dd;
+
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+
+    padding: 20px 20px;
+    font-size: 15px;
+    font-family: Open Sans;
+    font-weight: bold;
+}
+.appled-job i {
+    font-size: 28px;
+    margin-right: 8px;
+    line-height: 11px;
+    position: relative;
+    top: 5px;
+}
 .apply-thisjob i {
     font-size: 28px;
     margin-right: 8px;
@@ -10662,13 +10687,13 @@ terms {
 .stick-top .style3 .post-job-btn:hover {
     background: transparent;
     border: 2px solid #fb236a;
-    color: #fb236a;
+    color: #ffffff;
 }
 
 .btn-extars .post-job-btn:hover {
     background: transparent;
     border: 2px solid #fb236a;
-    color: #FFF;
+    color: gray;
 }
 
 .account-popup > form button:hover{

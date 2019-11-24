@@ -22,4 +22,17 @@ class JobPost extends Model
     {
         return $this->belongsTo(User::class,'advertiser_id','id');
     }
+
+    public function applicants()
+    {
+        return $this->hasMany(Applications::class,'job_post_id','id');
+    }
+
+    public function appliedBy($candidate_id)
+    {
+        if ($this->applicants()->where('candidate_id', $candidate_id)->first()){
+            return true;
+        }
+        return false;
+    }
 }

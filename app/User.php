@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\AdvertiserInfo;
+use App\Models\Applications;
 use App\Models\CandidateInfo;
 use App\Models\CandidateSkill;
 use App\Models\JobPost;
@@ -81,5 +82,15 @@ class User extends Authenticatable
     public function jobPosts()
     {
         return $this->hasMany(JobPost::class,'advertiser_id','id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Applications::class,'candidate_id','id');
+    }
+
+    public function applicants()
+    {
+        return $this->hasMany(Applications::class,'advertiser_id','id');
     }
 }

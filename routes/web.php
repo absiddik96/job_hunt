@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Advertiser', 'as' => 'adve
     /*Job Post*/
     Route::get('dashboard', 'JobPostsController@index')->name('dashboard');
     Route::resource('job-posts','JobPostsController')->except(['index']);
+
+    /*Applicants*/
+    Route::get('job-post/{jobPost}/applicants','ApplicantsController@applicants')->name('applicants');
+    Route::get('applicant/{applicants}/details','ApplicantsController@applicantDetails')->name('applicant.details');
 });
 
 
@@ -48,6 +52,9 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Candidate', 'as' => 'candi
 
     /*Skills*/
     Route::resource('skills','SkillsController')->except(['create','show']);
+
+    /*Job Apply*/
+    Route::post('job-apply/{jobPost}', 'JobAppliesController@apply')->name('job.apply');
 });
 
 

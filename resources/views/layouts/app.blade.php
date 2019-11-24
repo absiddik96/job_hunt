@@ -52,7 +52,7 @@
                 @endif
             @else
                 <div class="btn-extars">
-                    <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                    <a href="{{ route('register.advertiser') }}" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
                     <ul class="account-btns">
                         <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
                         <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
@@ -79,7 +79,7 @@
                     @endif
                 @else
                     <div class="btn-extars">
-                        <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+                        <a href="{{ route('register.advertiser') }}" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
                         <ul class="account-btns">
                             <li><a href="{{ route('sign-up.candidate') }}" title=""><i class="la la-key"></i> Sign Up</a></li>
                             <li><a href="{{ route('login') }}" title=""><i class="la la-external-link-square"></i> Login</a></li>
